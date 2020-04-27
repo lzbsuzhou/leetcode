@@ -4,6 +4,6 @@ class Solution:
         n = len(nums)
         for x in range(n):
             if target - nums[x] in d.keys():
-                return d[target-nums[x]],x
+                return d[target-nums[x]], x
             else:
                 d[nums[x]] = x

@@ -2,57 +2,58 @@
 import time
 
 
-def select_sort(arr):
-	for i in range(len(arr)-1):
+def select_sort(array):
+	for i in range(len(array) - 1):
 		min_index = i
-		for j in range(i+1, len(arr)):
-			if arr[j] < arr[min_index]:
+		for j in range(i+1, len(array)):
+			if array[j] < array[min_index]:
 				min_index = j
-		arr[i], arr[min_index] = arr[min_index], arr[i]
+		array[i], array[min_index] = array[min_index], array[i]
 
 
-def bubble_sort(arr):
-	for i in range(len(arr)-1, 0, -1):
+def bubble_sort(array):
+	for i in range(len(array) - 1, 0, -1):
 		for j in range(i):
-			if arr[j] > arr[j+1]:
-				arr[j], arr[j+1] = arr[j+1], arr[j]
+			if array[j] > array[j + 1]:
+				array[j], array[j + 1] = array[j + 1], array[j]
 
 
-def insert_sort(arr):
-	for i in range(1, len(arr)):
+def insert_sort(array):
+	for i in range(1, len(array)):
 		for j in range(i, 0, -1):
-			if arr[j] < arr[j-1]:
-				arr[j], arr[j-1] = arr[j-1], arr[j]
+			if array[j] < array[j - 1]:
+				array[j], array[j - 1] = array[j - 1], array[j]
 
-def shell_sort(arr):
-	n = len(arr)
+
+def shell_sort(array):
+	n = len(array)
 	gap = n // 2
 	while gap > 0:
 		for i in range(gap, n):
 			j = i
 			while j >= gap:
-				if arr[j] < arr[j-gap]:
-					arr[j], arr[j-gap] = arr[j-gap], arr[j]
+				if array[j] < array[j - gap]:
+					array[j], array[j - gap] = array[j - gap], array[j]
 				j -= gap
 		gap = gap // 2
 
 
-def quick_sort(arr: list, start: int, end: int) -> None:
+def quick_sort(array: list, start: int, end: int) -> None:
 	if start >= end:  # 递归结束
 		return
-	mid = arr[start]
+	mid = array[start]
 	low = start
 	high = end
 	while low < high:
-		while low < high and mid <= arr[high]:
+		while low < high and mid <= array[high]:
 			high -= 1
-		arr[low] = arr[high]
-		while low < high and mid > arr[low]:
+		array[low] = array[high]
+		while low < high and mid > array[low]:
 			low += 1
-		arr[high] = arr[low]
-	arr[low] = mid
-	quick_sort(arr, start, low-1)
-	quick_sort(arr, low+1, end)
+		array[high] = array[low]
+	array[low] = mid
+	quick_sort(array, start, low - 1)
+	quick_sort(array, low + 1, end)
 
 
 def merge(left, right):  # 合并
@@ -71,12 +72,12 @@ def merge(left, right):  # 合并
 	return result
 
 
-def merge_sort(arr):
-	if len(arr) <= 1:
-		return arr
-	num = len(arr) // 2
-	left = merge_sort(arr[:num])
-	right = merge_sort(arr[num:])
+def merge_sort(array):
+	if len(array) <= 1:
+		return array
+	num = len(array) // 2
+	left = merge_sort(array[:num])
+	right = merge_sort(array[num:])
 	return merge(left, right)
 
 
