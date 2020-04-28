@@ -1,4 +1,5 @@
 class Solution:
+	# --- 普通方法，时间复杂度未达到要求 ---
 	def findMedianSortedArrays(self, nums1: [int], nums2: [int]) -> float:
 		len_num1, len_num2 = len(nums1), len(nums2)
 		len_sum = len_num1 + len_num2
@@ -7,11 +8,10 @@ class Solution:
 		if len_sum % 2 == 0:  # 共偶数个数
 			last_num, cur_num = 0, 0
 			while index_1 + index_2 <= len_sum / 2:
-				print(index_1, index_2)
 				last_num = cur_num
 				if index_1 >= len_num1:
-					index_2 += 1
 					cur_num = nums2[index_2]
+					index_2 += 1
 				elif index_2 >= len_num2:
 					cur_num = nums1[index_1]
 					index_1 += 1
@@ -21,6 +21,8 @@ class Solution:
 				else:
 					cur_num = nums2[index_2]
 					index_2 += 1
+				# print("index: ", index_1, index_2)
+				# print("num:   ", last_num, cur_num)
 			result = (last_num + cur_num) / 2
 		else:  # 共奇数个数
 			while index_1 + index_2 <= len_sum // 2:
