@@ -1,3 +1,7 @@
+"""
+题目：合并区间
+"""
+
 def merge_interval(list0, list1):
 	if list0[1] < list1[0] or list0[0] > list1[1]:  # 无交集
 		return None
